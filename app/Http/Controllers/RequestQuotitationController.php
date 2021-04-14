@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 use App\RequestQuotitation; 
+use App\RequestDetail; 
 use Validator;
 
 class RequestQuotitationController extends Controller
