@@ -14,7 +14,7 @@ class CreateAdministrativeUnitsTable extends Migration
     public function up()
     {
         Schema::create('administrative_units', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->timestamps();
         });
     }

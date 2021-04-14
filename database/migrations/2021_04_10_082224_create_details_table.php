@@ -14,7 +14,7 @@ class CreateDetailsTable extends Migration
     public function up()
     {
         Schema::create('details', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('number');
             $table->integer('amount');
             $table->string('unit');

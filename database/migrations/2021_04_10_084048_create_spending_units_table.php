@@ -14,7 +14,7 @@ class CreateSpendingUnitsTable extends Migration
     public function up()
     {
         Schema::create('spending_units', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('nameUnidadGasto');
             $table->timestamps();
         });

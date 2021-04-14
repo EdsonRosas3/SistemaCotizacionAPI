@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\RequestDetail; 
+use App\Report; 
 
 class RequestQuotitation extends Model
 {
@@ -12,7 +14,14 @@ class RequestQuotitation extends Model
      * @var array
      */
     protected $fillable = [
-        'nameUnidadGasto','aplicantName','requestDate', 'amount',
+        'nameUnidadGasto','aplicantName','requestDate','details','amount',
     ];
+
+    public function requestDetails(){
+        return $this->hasMany(RequestDetail::class);
+    }
+    public function reports(){
+        return $this->hasMany(Report::class);
+    }
 
 }
