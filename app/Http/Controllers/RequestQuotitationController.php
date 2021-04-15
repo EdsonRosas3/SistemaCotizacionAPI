@@ -18,7 +18,8 @@ class RequestQuotitationController extends Controller
      */
     public function index()
     {
-        $requestQuotitation = RequestQuotitation::with('reports','request_details')->get();
+        //$requestQuotitation = RequestQuotitation::with('reports','request_details')->get();
+        $requestQuotitation = RequestQuotitation::all();
         return response()->json(['request_quotitations'=>$requestQuotitation],200);
     }
 

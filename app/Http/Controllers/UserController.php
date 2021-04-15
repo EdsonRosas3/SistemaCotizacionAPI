@@ -35,15 +35,15 @@ class UserController extends Controller
     public function register(Request $request) 
     { 
         $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
+            'userName' => 'required', 
             'email' => 'required|email', 
-            'password' => 'required', 
-            'c_password' => 'required|same:password', 
         ]);
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
         $input = $request->all(); 
+        $input['password'] = $input['ci'];
+        //dd($input['password']);
         $input['password'] = bcrypt($input['password']); 
         $user = User::create($input); 
         $success['token'] =  $user->createToken('MyApp')-> accessToken; 
@@ -67,7 +67,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return response()->json(['users'=>$users],200);
+    
     }
 
     /**
