@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facade\File;
 use App\RequestQuotitation; 
 use App\RequestDetail; 
 use Validator;
+use Illuminate\Support\Facades\Storage;
 
 class RequestQuotitationController extends Controller
 {
@@ -30,7 +32,7 @@ class RequestQuotitationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $input = $request->only('nameUnidadGasto', 'aplicantName','requestDate','amount');
         $arrayDetails = $request->only('details');
         $arrayDetails=$arrayDetails['details'];
@@ -53,26 +55,53 @@ class RequestQuotitationController extends Controller
              RequestDetail::create($detailI);
             
          }
-         return response()->json(['success' => $requestQuotitation], $this-> successStatus);
+         
+         return response()->json(['success' =>$idQuotitation], $this-> successStatus);
+    }
+    /* public function saveFile($files , $datas){
+        
+        return;
+    } */
+
+    public function upload(Request $request){
+        $request->file('archivo')->store('public');
+        
     }
 
-    public function uploadFile(Request $request)
-    {
-        if($request->hasFile('file')){
-            $file = $request->file('file');
-            $filename = $file->getClientOriginalName();
+    public function uploadOne(Request $req,$id){
+        
+        $result = $req->file('file')->store('Archivos');
+        return ["result"=>$result];
+    } 
+    public function download(Request $req){
+        $path = storage_path('app\Archivos\KEr48AL1e7QHtSmq3CMhysAQK53FJvm0DpVJcROm.pdf');
+        return response()->download($path);
+    }
 
+
+    public function uploadFile(Request $request,$id)
+    {
+       
+        $tamanio = count($request->file());
+        $files = $request->file();
+        foreach ($files as $file) {
+            $filename = $file->getClientOriginalName();
+        
             $filename= pathinfo($filename, PATHINFO_FILENAME);
             $name_File = str_replace(" ","_",$filename);
-
+    
             $extension = $file->getClientOriginalExtension();
-
-            $picture = date('His') . "-" . $name_File . "." .$extension;
-            $file->move(public_path('Files/'),$picture);
-            return response()->json(["messaje"=>"File upload succesfully"]);
+    
+            $name = date('His') . "-" . $name_File . "." .$extension;
+            $file->move(public_path('FilesAquisicion/'.$id),$name);
+        }
+       
+        return response()->json(["messaje"=>"Archivos guardados"]);
+        /* if($request->hasFile('file')){
+           
         }else{
             return response()->json(["messaje"=>"Error"]);
-        }
+        } */
     }
     public function fileDowload(){
         return response()->download(public_path('Files/db.pdf'), "base de datos");

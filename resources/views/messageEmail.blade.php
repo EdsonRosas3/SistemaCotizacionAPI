@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<h1>Solicitud de cotizacion</h1>
+    <h1>Solicitud de cotizacion</h1>
     {{$content->description}}
 </body>
 </html>

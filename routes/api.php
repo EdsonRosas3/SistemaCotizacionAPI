@@ -20,8 +20,8 @@ Route::post('quotitation', 'RequestQuotitationController@store');
 Route::get('quotitations', 'RequestQuotitationController@index');
 Route::get('quotitation/{id}', 'RequestQuotitationController@show');
 Route::post('report/{id}', 'ReportController@store');
-Route::post('upload', 'RequestQuotitationController@uploadFile');
-Route::get('dowloadFile', 'RequestQuotitationController@fileDowload');
+Route::post('upload/{id}', 'RequestQuotitationController@uploadFile');
+Route::get('download', 'RequestQuotitationController@download');
 Route::post('details', 'UserController@details');
 Route::post('sendEmail','EmailController@store');
 
