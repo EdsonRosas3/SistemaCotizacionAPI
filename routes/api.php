@@ -23,6 +23,7 @@ Route::post('report/{id}', 'ReportController@store');
 Route::post('upload', 'RequestQuotitationController@uploadFile');
 Route::get('dowloadFile', 'RequestQuotitationController@fileDowload');
 Route::post('details', 'UserController@details');
+Route::post('sendEmail','EmailController@store');
 
 Route::group(['middleware' => 'auth:api'], function(){
     
