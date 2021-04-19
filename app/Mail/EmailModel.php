@@ -28,7 +28,7 @@ class EmailModel extends Mailable
      */
     public function build()
     {
-        return $this->view('messageEmail')
+        return $this->subject("Solicitud de cotización")->view('messageEmail')
         ->attach(public_path('/Files').'/SolicitudDeCotizacion.pdf', [
             'as' => 'Solicitud de contización.pdf',
             'mime' => 'application/pdf',

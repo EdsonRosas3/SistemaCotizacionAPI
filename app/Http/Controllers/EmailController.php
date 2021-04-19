@@ -28,7 +28,7 @@ class EmailController extends Controller
         //dd($request);
         $sabeEmail = $request->all(); 
         $sabeEmail = $request->email;
-       Mail::to($sabeEmail)->send(new EmailModel($request));
+        Mail::to($sabeEmail)->send(new EmailModel($request));
     }
 
     /**
