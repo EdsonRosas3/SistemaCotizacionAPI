@@ -19,6 +19,8 @@ Route::get('users', 'UserController@index');
 Route::post('quotitation', 'RequestQuotitationController@store');
 Route::get('quotitations', 'RequestQuotitationController@index');
 Route::get('quotitation/{id}', 'RequestQuotitationController@show');
+Route::put('quotitation/status/{id}', 'RequestQuotitationController@updateState');
+#Route::put('quotitation/{id}', 'RequestQuotitationController@updateState');
 Route::post('report/{id}', 'ReportController@store');
 Route::post('upload/{id}', 'RequestQuotitationController@uploadFile');
 Route::get('download', 'RequestQuotitationController@download');

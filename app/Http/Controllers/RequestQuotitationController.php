@@ -123,6 +123,14 @@ class RequestQuotitationController extends Controller
         return response()->json($requestQuotitation,200);
     }
 
+    public function updateState(Request $request, $id)
+    {
+        $status = $request->only('status');
+        $requestQuotitation = RequestQuotitation::find($id);
+        $requestQuotitation['status'] = $status['status'];
+        $requestQuotitation->update();
+        return response()->json($requestQuotitation,200);
+    }
     /**
      * Update the specified resource in storage.
      *
