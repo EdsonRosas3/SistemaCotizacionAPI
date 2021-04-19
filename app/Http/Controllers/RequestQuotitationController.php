@@ -116,8 +116,10 @@ class RequestQuotitationController extends Controller
      */
     public function show($id)
     {
-        $requestQuotitations = RequestQuotitation::with('reports','request_details')->get();
+        $requestQuotitations = RequestQuotitation::all();
+        $deils = RequestDetail::where('request_quotitations_id',$id)->get();
         $requestQuotitation = $requestQuotitations->find($id);
+        $requestQuotitation['details'] = $deils;
         return response()->json($requestQuotitation,200);
     }
 
