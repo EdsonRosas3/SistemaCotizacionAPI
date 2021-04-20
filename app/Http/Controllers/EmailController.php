@@ -29,6 +29,7 @@ class EmailController extends Controller
         $sabeEmail = $request->all(); 
         $sabeEmail = $request->email;
         Mail::to($sabeEmail)->send(new EmailModel($request));
+        return response()->json(['result'=>"El mensage ha sido enviado"],200);
     }
 
     /**

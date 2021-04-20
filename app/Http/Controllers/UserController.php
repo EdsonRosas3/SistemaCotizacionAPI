@@ -41,14 +41,25 @@ class UserController extends Controller
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
+
+        $userEncontrado = User::where('email',$request['email'])->get();
+        $valor = count($userEncontrado);
+        if($valor == 1){
+            $mensge = 'El email ya esta registrado '.$request['email'];
+            return response()->json(['message'=>$mensge], 200); 
+        }
+        $userEncontrado = User::where('ci',$request['ci'])->get();
+        $valor = count($userEncontrado);
+        if($valor == 1){
+            $mensge = 'El cedula de identidad ya esta registrado '.$request['ci'];
+            return response()->json(['message'=>$mensge], 200); 
+        }
+       
         $input = $request->all(); 
         $input['password'] = $input['ci'];
-        //dd($input['password']);
         $input['password'] = bcrypt($input['password']); 
         $user = User::create($input); 
-        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-        $success['name'] =  $user->name;
-        return response()->json(['success'=>$success], $this-> successStatus); 
+        return response()->json(['message'=>""], $this-> successStatus); 
     }
     /** 
      * details api 
