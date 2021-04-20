@@ -14,11 +14,12 @@ class CreateRequestQuotitationsTable extends Migration
     public function up()
     {
         Schema::create('request_quotitations', function (Blueprint $table) {
-            $table->increments('idRequest');
+            $table->id();
             $table->string('nameUnidadGasto');
             $table->string('aplicantName');
             $table->date('requestDate');
             $table->integer('amount');
+            $table->string('status')->nullable()->default('pendiente');
             $table->timestamps();
         });
     }

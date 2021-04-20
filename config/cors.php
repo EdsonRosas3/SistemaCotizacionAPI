@@ -21,7 +21,7 @@ return [
 
     'allowed_origins' => ['*'],
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => ['*'],
 
     'allowed_headers' => ['*'],
 
@@ -31,4 +31,5 @@ return [
 
     'supports_credentials' => false,
 
+    'Access-Control-Allow-Origin' => ['*'],
 ];
