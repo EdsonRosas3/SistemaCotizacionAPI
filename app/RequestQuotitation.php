@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\RequestDetail; 
 use App\Report; 
+use App\CompanyCode;
 
 class RequestQuotitation extends Model
 {
@@ -22,6 +23,9 @@ class RequestQuotitation extends Model
     }
     public function reports(){
         return $this->hasMany(Report::class);
+    }
+    public function companyCodes(){
+        return $this->hasMany(CompanyCode::class);
     }
 
 }
